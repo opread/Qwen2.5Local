@@ -35,7 +35,9 @@ Use Command Prompt (cmd.exe) for the following commands.
 
 4. Download model: `python -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='Qwen/Qwen2.5-3B')"`
 
-5. Set up Google API key: Create a `.env` file in the project root with `GOOGLE_API_KEY=your_google_ai_api_key`
+5. Set up Google API key:
+   - Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - Create a `.env` file in the project root with `GOOGLE_API_KEY=your_google_ai_api_key`
 
 ## Running the Web App
 
