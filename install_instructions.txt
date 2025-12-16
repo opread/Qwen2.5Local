@@ -1,0 +1,49 @@
+# QWEN 2.5 3B Local Deployment - Installation Instructions
+
+## Prerequisites
+- Windows 10 or later
+- Python 3.12 installed (download from https://www.python.org/downloads/)
+- Nvidia GPU with CUDA support (GTX 1060 Ti or better)
+- At least 16GB RAM
+- At least 20GB free disk space
+
+## Automated Installation
+1. Open Command Prompt (cmd.exe)
+2. Navigate to the project directory: cd c:\Users\oprea\projects\AIBacktester
+3. Run the installation script: install.bat
+4. Wait for the setup to complete (may take 10-15 minutes for model download)
+
+## Manual Installation
+If you prefer manual setup:
+
+1. Open Command Prompt
+2. Navigate to project directory
+3. Create virtual environment:
+   "C:\Users\oprea\AppData\Local\Programs\Python\Python312\python.exe" -m venv venv
+4. Activate environment:
+   venv\Scripts\activate
+5. Install PyTorch:
+   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+6. Install other packages:
+   pip install transformers fastapi uvicorn bitsandbytes accelerate python-multipart
+7. Download model:
+   python -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='Qwen/Qwen2.5-3B')"
+
+## Running the Application
+1. Activate environment: venv\Scripts\activate
+2. Start server: uvicorn app:app --host 127.0.0.1 --port 8000
+3. Wait for "Uvicorn running on http://127.0.0.1:8000"
+
+## Testing the API
+Use Postman or curl:
+- POST to http://127.0.0.1:8000/generate
+- Form data: key="prompt", value="your question here"
+- Or use the example_usage.py script
+
+## Troubleshooting
+- If CUDA errors, ensure Nvidia drivers are up to date
+- If memory errors, close other applications
+- If port 8000 is busy, change to another port with --port 8001
+
+## For AI Agent Integration
+Send POST requests to the /generate endpoint with prompts and process the responses.
